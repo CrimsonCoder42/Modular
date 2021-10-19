@@ -1,0 +1,512 @@
+shiny::runApp('Class 5/D4Biggs_HW')
+D3.makeDataFrame <- function() {
+DF <- data.frame(name=rep("",8),cfg=rep("",8),stringsAsFactors = FALSE)
+DF[1,] <- c("I","1234")
+DF[2,] <- c("r","2413")
+DF[3,] <- c("t","4321")
+DF[4,] <- c("s","3142")
+DF[5,] <- c("w","3412")
+DF[6,] <- c("x","4231")
+DF[7,] <- c("y","2143")
+DF[8,] <- c("z","1324")
+return(DF)
+}
+# {I, r, r^2, r^3, s, rs, r^2s, r^3s}
+# R = 90 degree rotation
+# S = reflection about the vertical axis
+BiggsDF <- D3.makeDataFrame()
+BiggsDF
+D4.showConfigs <- function(DF) {
+par(mar=c(1,1,1,1))
+plot(NULL,xlim=c(0,30),ylim = c(-1,3), asp = 1, axes = FALSE)
+for (i in 0:7) {
+points(c(0,2,2,0,0)+4*i,c(0,0,2,2,0),type = "l")
+lbl <- strsplit(DF[i+1,2],"")[[1]]
+text(c(0.18,1.82,0.18,1.82)+4*i,c(1.82,1.82,0.18,0.18),lbl)
+text(1+4*i,-0.5,DF[i+1,1])
+# segments(c(10,12-0.3*sqrt(3),17+0.3*sqrt(3)),c(-0.5,-0.3,-0.3),
+#          c(10,13.5+0.3*sqrt(3),15.5-0.3*sqrt(3)),
+#          c(2,sqrt(3)/2+0.3,sqrt(3)/2+0.3),lty = 2)
+}
+}
+D4.showConfigs(BiggsDF)
+D4.showConfigs <- function(DF) {
+par(mar=c(1,1,1,1))
+plot(NULL,xlim=c(0,30),ylim = c(-1,3), asp = 1, axes = FALSE)
+for (i in 0:7) {
+points(c(0,2,2,0,0)+4*i,c(0,0,2,2,0),type = "l")
+lbl <- strsplit(DF[i+1,2],"")[[1]]
+text(c(0.18,1.82,0.18,1.82)+4*i,c(1.82,1.82,0.18,0.18),lbl)
+text(1+4*i,-0.5,DF[i+1,1])
+segments(c(10,12-0.3*sqrt(3),17+0.3*sqrt(3)),c(-0.5,-0.3,-0.3),
+c(10,13.5+0.3*sqrt(3),15.5-0.3*sqrt(3)),
+c(2,sqrt(3)/2+0.3,sqrt(3)/2+0.3),lty = 2)
+}
+}
+D4.showConfigs(BiggsDF)
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/D3Biggs')
+runApp('Class 6/GroupA4_export')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 6/GroupA4_export')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 6/GroupA4_export')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 6/GroupA4_export')
+runApp('Class 5/GroupD6_HW')
+runApp('Class 5/GroupD6_HW')
+shiny::runApp('Class 5/GroupD6_HW')
+runApp('Class 6/GroupA4_export')
+runApp('Arithmetic')
+shiny::runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Class 5/OuterGuide')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Class 5/OuterGuide')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Class 5/OuterGuide')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp()
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp()
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Class 5/D3Biggs')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('Modular_HW')
+runApp('GCDEuclid')
+21*30
+630%%37
+-16*30
+-480%%37
+gcd.euclid <- function(x,y,details = FALSE) {
+#Make a data frame with more rows than we will ever need
+N <- 100
+DF <- data.frame(a=numeric(N),b=numeric(N),r=numeric(N),q=numeric(N),
+m=numeric(N),n=numeric(N))
+i <- 1
+DF[i,] <- c(max(x,y),min(x,y),max(x,y)%%min(x,y),max(x,y)%/%min(x,y),0,0)
+while (DF[i,3] > 0){
+DF[i+1,1] <- DF[i,2]
+DF[i+1,2] <- DF[i,3]
+DF[i+1,4] <- DF[i,2]%/%DF[i,3]
+DF[i+1,3] <- DF[i,2]%%DF[i,3]
+i <- i+1
+}
+#In row i the remainder was 0 and the smaller number b is the gcd.
+gcd <- DF[i,2]
+#If details are not requested we have the answer.
+if(details == FALSE) return(gcd)
+j <- i-1
+#In row j the remainder r2 is the gcd and a2 = b2q2+r2.
+#So r2 = (1)(a2)-(q2)(b2)
+#Therefore m2 = 1 and n2 = -q2
+DF[j,5] <- 1
+DF[j,6] <- -DF[j,4]
+#In row j-1 a1 = b1q1+r1. The remainder r1 becomes b2 and b1 becomes a2.
+#So a1 = a2q1+b2   and b2 = a1-q1a2
+#The gcd is m2a2+n2b2=m2a2+n2a1-n2q1a2=n2a1+(m2-n2q1)a2
+#Therefore m1 = n2 and n1 = m2-n2q1
+while (j > 1){
+DF[j-1,5] <- DF[j,6]
+DF[j-1,6] <- DF[j,5]-DF[j,6]*DF[j-1,4]
+j <- j-1
+}
+m <- ifelse(x > y, DF[1,5], DF[1,6])
+n <- ifelse(x > y, DF[1,6], DF[1,5])
+stopifnot(gcd ==m*x+n*y)
+return(list(gcd=gcd,m=m,n=n,df=head(DF,i)))
+}
+gcd.euclid(30,37)
+gcd.euclid(30,37,details=TRUE)$gcd
+gcd.euclid(30,37,details=TRUE)$m
+gcd.euclid(30,37,details=TRUE)$n
+gcd.euclid(30,37,details=TRUE)$n
+outer(c(1:37),c(1:n),"*")
+n <- gcd.euclid(30,37,details=TRUE)$n
+outer(c(1:37),c(1:n),"*")
+outer(c(1:37),c(1:n),"*")%%n
+n <- gcd.euclid(30,37,details=TRUE)$n;n
+gcd.euclid(30,37,details=TRUE)$gcd
+gcd.euclid(30,37,details=TRUE)$m
+outer(c(1:n), c(1:37), "*")%%n
+outer(c(1:n), c(1:37), "*")
+n <- gcd.euclid(30,37,details=TRUE)$n;n
+outer(c(1:n), c(1:37), "*")%%n
+outer(c(1:n), c(1:37), "*")%%37
+for (i in c(1:53)) {
+gcd.euclid(i,37)
+}
+for(i in 1:3) {                                    # Head of for-loop
+new_element <- rep(i, 3)                         # Create new list element
+my_list[[length(my_list) + 1]] <- new_element    # Append new list element
+}
+my_list
+my_list <- list()
+for(i in 1:3) {                                    # Head of for-loop
+new_element <- rep(i, 3)                         # Create new list element
+my_list[[length(my_list) + 1]] <- new_element    # Append new list element
+}
+my_list <- list()
+for(i in 1:3) {                                    # Head of for-loop
+new_element <- rep(i, 3)                         # Create new list element
+my_list[[length(my_list) + 1]] <- new_element    # Append new list element
+}
+my_list
+my_list <- list()
+for (i in c(1:53)) {
+my_list[i] <- gcd.euclid(i,37)
+}
+my_list <- list()
+for (i in c(1:53)) {
+my_list[i] <- gcd.euclid(i,37)
+}
+my_list
+my_list <- list()
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37)
+}
+my_list
+my_list <- list()
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37)$m
+}
+my_list
+my_list <- list()
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37,details=TRUE)$m
+}
+my_list
+gcd.euclid(30,37)
+gcd.euclid(30,37,details=TRUE)
+my_list <- list()
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37,details=TRUE)$m
+}
+my_list
+my_list <- list()
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37)
+}
+my_list
+my_list <- list()
+my_list
+for (i in c(1:53)) {
+my_list <- gcd.euclid(i,37)
+}
+my_list
+runApp('GCDEuclid')
+runApp('Modular_HW')
+runApp('Modular_HW')
+19*19
+361%%20
+19*17
+323%%20
+test <- 17*17*17
+test <- 17*17*17;test
+test%%20
+test <- 17^4;test
+test%%20
+runApp('Modular_HW')
+runApp('Modular_HW')
+gcd.multiplicativeGroup <- function(n) {
+v <- c(1:n)
+return(v)
+}
+gcd.multiplicativeGroup(5)
+gcd.multiplicativeGroup <- function(n) {
+v <- c(1:n-1)
+return(v)
+}
+gcd.multiplicativeGroup(5)
+gcd(8,1)
+c=gcd(8,1)
+c=GCD(8,1)
+GCD <- function(n, m) {
+stopifnot(is.numeric(n), is.numeric(m))
+if (length(n) != 1 || floor(n) != ceiling(n) ||
+length(m) != 1 || floor(m) != ceiling(m))
+stop("Arguments 'n', 'm' must be integer scalars.")
+if (n == 0 && m == 0) return(0)
+n <- abs(n); m <- abs(m)
+if (m > n) {
+t <- n; n <- m; m <- t
+}
+while (m > 0) {
+t <- n
+n <- m
+m <- t %% m
+}
+return(n)
+}
+c=GCD(8,1)
+c=GCD(8,1);c
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+return(v)
+}
+gcd.multiplicativeGroup(5)
+gcd.multiplicativeGroup(5)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(value = 1) {
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(5)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(20)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(20)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+print(val)
+append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(20)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+print(val)
+append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+print(val)
+# append(x, val)
+}
+}
+return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+setwd("~/Desktop/Math E-151 Classic Mathematics/Dashboard/Modular_HW")
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup(12)
+gcd.GCD <- function(n, m) {
+stopifnot(is.numeric(n), is.numeric(m))
+if (length(n) != 1 || floor(n) != ceiling(n) ||
+length(m) != 1 || floor(m) != ceiling(m))
+stop("Arguments 'n', 'm' must be integer scalars.")
+if (n == 0 && m == 0) return(0)
+n <- abs(n); m <- abs(m)
+if (m > n) {
+t <- n; n <- m; m <- t
+}
+while (m > 0) {
+t <- n
+n <- m
+m <- t %% m
+}
+return(n)
+}
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+# return(x)
+}
+gcd.multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+return(x)
+}
+multiplicativeGroup <- function(n) {
+i <- n-1
+v <- c(1:i)
+# x <- c()
+while(i < n) {
+value <- gcd.GCD(n, i)
+if(val = 1) {
+# print(val)
+# append(x, val)
+}
+}
+return(x)
+}
